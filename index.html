@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>GAME DEV PORTFOLIO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="hud">
+            <div class="hud-left">
+                <div class="avatar" aria-hidden="true"></div>
+                <div>
+                    <h1 class="pixel">CHENG</h1>
+                    <div class="sub">LV.01｜<b>Unity程式工程師</b></div>
+                </div>
+            </div>
+            <button id="themeBtn" aria-label="切換日夜模式">
+                <span id="themeIcon" aria-hidden="true">☾</span>
+                <span class="lbl" id="themeLbl">NIGHT</span>
+            </button>
+        </div>
+    </header>
+
+    <nav aria-label="作品分類">
+        <div class="tabs" role="tablist" id="tabs"></div>
+    </nav>
+
+    <main>
+        <div class="grid" id="grid" role="tabpanel"></div>
+    </main>
+
+    <div id="backdrop" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+        <div class="modal pxb">
+            <div class="pxb-in">
+                <div class="m-head">
+                    <h2 id="mTitle"></h2>
+                    <button id="closeBtn" aria-label="關閉">✕ ESC</button>
+                </div>
+                <div class="m-scroll" id="mBody"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>© 2026 CHENG · PRESS START TO CONTINUE</footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
