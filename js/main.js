@@ -5,7 +5,7 @@
 const $ = s => document.querySelector(s);
 const tabsEl = $("#tabs"), gridEl = $("#grid");
 const backdrop = $("#backdrop"), mTitle = $("#mTitle"), mBody = $("#mBody");
-let activeCat = CATEGORIES[0].id;
+let activeCat = (visibleCategories()[0] || CATEGORIES[0]).id;
 let lastFocus = null;
 
 /* ---------- 日夜切換 ---------- */
@@ -23,9 +23,14 @@ $("#themeBtn").addEventListener("click", () => {
 if (window.matchMedia("(prefers-color-scheme: light)").matches) setTheme("light");
 
 /* ---------- 分類標籤 ---------- */
+/* 只取出「有作品」的分類，空分類不顯示在標籤列 */
+function visibleCategories() {
+    return CATEGORIES.filter(c => PROJECTS.some(p => p.categories.includes(c.id)));
+}
+
 function renderTabs() {
     tabsEl.innerHTML = "";
-    CATEGORIES.forEach(c => {
+    visibleCategories().forEach(c => {
         const b = document.createElement("button");
         b.className = "tab";
         b.textContent = c.label;
