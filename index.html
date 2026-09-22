@@ -9,7 +9,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <!-- 樣式表載入前的底色保險，避免慢速網路下出現白色閃爍 -->
+    <style>
+        html {
+            background: #131022
+        }
+    </style>
+    <!-- 樣式與程式碼都帶時間戳記載入，確保訪客永遠拿到最新版本，
+         不會被瀏覽器或 CDN 的快取擋住（圖片與 PDF 不受影響，照常快取） -->
+    <script>
+        var ASSET_V = Date.now();
+        document.head.insertAdjacentHTML("beforeend",
+            '<link rel="stylesheet" href="css/style.css?v=' + ASSET_V + '">');
+    </script>
 </head>
 
 <body>
@@ -52,8 +64,15 @@
 
     <footer>© 2026 CHENG · PRESS START TO CONTINUE</footer>
 
-    <script src="js/data.js"></script>
-    <script src="js/main.js"></script>
+    <script>
+        /* async = false 讓動態插入的 script 仍依插入順序執行（data.js 先、main.js 後） */
+        ["js/data.js", "js/main.js"].forEach(function (src) {
+            var s = document.createElement("script");
+            s.src = src + "?v=" + ASSET_V;
+            s.async = false;
+            document.body.appendChild(s);
+        });
+    </script>
 </body>
 
 </html>
