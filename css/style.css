@@ -572,6 +572,26 @@ main {
     content: none
 }
 
+/* 技術亮點：小標 + 說明段落 */
+.hl {
+    margin-bottom: 16px
+}
+
+.hl:last-child {
+    margin-bottom: 0
+}
+
+.hl-title {
+    font-size: 16px;
+    color: var(--gold);
+    margin-bottom: 4px;
+}
+
+.hl-body {
+    font-size: 16px;
+    color: var(--ink);
+}
+
 .links {
     display: flex;
     flex-wrap: wrap;

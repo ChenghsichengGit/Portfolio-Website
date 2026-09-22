@@ -243,6 +243,32 @@ function openModal(p, trigger) {
     });
     if (ul.children.length) mBody.appendChild(sec("負責內容", ul));
 
+    if (p.highlights && p.highlights.length) {
+        const wrap = document.createElement("div");
+        p.highlights.forEach(h => {
+            const item = document.createElement("div");
+            item.className = "hl";
+            const t = document.createElement("div");
+            t.className = "hl-title"; t.textContent = h.title;
+            const b = document.createElement("p");
+            b.className = "hl-body"; b.textContent = h.body;
+            item.appendChild(t); item.appendChild(b);
+            wrap.appendChild(item);
+        });
+        mBody.appendChild(sec("技術亮點", wrap));
+    }
+
+    if (p.limits && p.limits.length) {
+        const lu = document.createElement("ul");
+        lu.className = "role-list";
+        p.limits.forEach(x => {
+            const li = document.createElement("li");
+            li.textContent = x;
+            lu.appendChild(li);
+        });
+        mBody.appendChild(sec("取捨與已知限制", lu));
+    }
+
     if (p.links && p.links.length) {
         const links = document.createElement("div");
         links.className = "links";
