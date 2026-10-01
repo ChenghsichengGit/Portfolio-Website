@@ -8,7 +8,9 @@
     <title>GAME DEV PORTFOLIO</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- 像素字型缺字時的後備：繁中 / 簡中 / 日文各一套（依 <html lang> 切換優先序） -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
     <!-- 樣式表載入前的底色保險，避免慢速網路下出現白色閃爍 -->
     <style>
         html {
@@ -32,17 +34,20 @@
                 <div class="avatar" aria-hidden="true"></div>
                 <div>
                     <h1 class="pixel">CHENG</h1>
-                    <div class="sub">LV.01｜<b>Unity程式工程師</b></div>
+                    <div class="sub">LV.01｜<b id="roleSub">軟體工程師(C#/Unity)</b></div>
                 </div>
             </div>
-            <button id="themeBtn" aria-label="切換日夜模式">
-                <span id="themeIcon" aria-hidden="true">☾</span>
-                <span class="lbl" id="themeLbl">NIGHT</span>
-            </button>
+            <div class="hud-right">
+                <div class="langs" id="langs" role="group" aria-label="切換語言"></div>
+                <button id="themeBtn" aria-label="切換日夜模式">
+                    <span id="themeIcon" aria-hidden="true">☾</span>
+                    <span class="lbl" id="themeLbl">NIGHT</span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <nav aria-label="作品分類">
+    <nav id="nav" aria-label="作品分類">
         <div class="tabs" role="tablist" id="tabs"></div>
     </nav>
 

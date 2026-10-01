@@ -23,6 +23,16 @@
     --magenta: #ff6ea9;
     --shadow: rgba(0, 0, 0, .5);
     --scanline-op: .05;
+    /* 像素字型優先，缺字時依語言回退到對應的 Noto Sans */
+    --font: 'Cubic 11', 'Noto Sans TC', sans-serif;
+}
+
+html[lang="zh-Hans"] {
+    --font: 'Cubic 11', 'Noto Sans SC', sans-serif
+}
+
+html[lang="ja"] {
+    --font: 'Cubic 11', 'Noto Sans JP', sans-serif
 }
 
 [data-theme="light"] {
@@ -54,7 +64,7 @@ html {
 body {
     background: var(--bg);
     color: var(--ink);
-    font-family: 'Cubic 11', 'Noto Sans TC', sans-serif;
+    font-family: var(--font);
     font-size: 16px;
     line-height: 1.8;
     min-height: 100vh;
@@ -65,7 +75,7 @@ body {
 }
 
 .pixel {
-    font-family: 'Cubic 11', 'Noto Sans TC', monospace
+    font-family: var(--font)
 }
 
 /* CRT 掃描線（僅深色模式、極淡） */
@@ -157,6 +167,48 @@ header {
 .hud .sub b {
     color: var(--teal);
     font-weight: 700
+}
+
+/* 右側控制列：語言切換 + 日夜切換 */
+.hud-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.langs {
+    display: flex;
+    gap: 4px
+}
+
+.lang-btn {
+    cursor: pointer;
+    font: inherit;
+    font-size: 14px;
+    line-height: 1;
+    color: var(--ink-dim);
+    background: var(--panel);
+    border: 3px solid var(--border);
+    padding: 9px 8px;
+    min-width: 38px;
+    box-shadow: 3px 3px 0 var(--shadow);
+    transition: color .15s, background .15s, transform .08s, box-shadow .08s;
+}
+
+.lang-btn:hover {
+    color: var(--ink);
+    background: var(--panel-2)
+}
+
+.lang-btn:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--shadow)
+}
+
+.lang-btn[aria-pressed="true"] {
+    color: var(--gold);
+    background: var(--panel-2);
+    border-color: var(--gold-deep);
 }
 
 /* 日夜切換 */
