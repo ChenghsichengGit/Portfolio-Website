@@ -37,6 +37,7 @@ const UI = {
     close: { "zh-Hant": "關閉", "zh-Hans": "关闭", en: "Close", ja: "閉じる" },
     themeToggle: { "zh-Hant": "切換日夜模式", "zh-Hans": "切换日夜模式", en: "Toggle dark mode", ja: "ダークモード切り替え" },
     navLabel: { "zh-Hant": "作品分類", "zh-Hans": "作品分类", en: "Project categories", ja: "作品カテゴリー" },
+    copied: { "zh-Hant": "已複製", "zh-Hans": "已复制", en: "Copied", ja: "コピーしました" },
     langLabel: { "zh-Hant": "切換語言", "zh-Hans": "切换语言", en: "Change language", ja: "言語切り替え" }
 };
 
@@ -72,6 +73,7 @@ function setLang(l) {
     document.documentElement.lang = l;
     renderLangBtns();
     applyUI();
+    renderAbout();
     renderTabs();
     renderGrid();
     if (backdrop.classList.contains("open") && currentProject) openModal(currentProject, lastFocus);
@@ -113,6 +115,112 @@ $("#themeBtn").addEventListener("click", () => {
     setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
 });
 if (window.matchMedia("(prefers-color-scheme: light)").matches) setTheme("light");
+
+/* ---------- 關於我 ---------- */
+/* 複製文字到剪貼簿，並在按鈕上顯示 1.6 秒的回饋 */
+function copyToClipboard(text, el) {
+    const label = el.querySelector(".c-label");
+    const done = () => {
+        label.textContent = t(UI.copied);
+        el.classList.add("copied");
+        clearTimeout(el._resetTimer);
+        el._resetTimer = setTimeout(() => {
+            label.textContent = label.dataset.orig;
+            el.classList.remove("copied");
+        }, 1600);
+    };
+    /* 非安全來源（例如直接用 file:// 開啟）沒有 clipboard API，改用舊的做法 */
+    const fallback = () => {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); done(); } catch (e) { /* 複製失敗就不給回饋 */ }
+        ta.remove();
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done).catch(fallback);
+    } else {
+        fallback();
+    }
+}
+
+function renderAbout() {
+    $("#aboutIntro").textContent = t(ABOUT.intro);
+
+    const sk = $("#skills");
+    sk.innerHTML = "";
+    ABOUT.skills.forEach(g => {
+        const row = document.createElement("div");
+        row.className = "sk-row";
+        const label = document.createElement("span");
+        label.className = "sk-label"; label.textContent = t(g.group);
+        const chips = document.createElement("div");
+        chips.className = "chips";
+        g.items.forEach(x => {
+            const c = document.createElement("span");
+            c.className = "chip"; c.textContent = t(x);
+            chips.appendChild(c);
+        });
+        row.appendChild(label); row.appendChild(chips);
+        sk.appendChild(row);
+    });
+
+    const cs = $("#contacts");
+    cs.innerHTML = "";
+    ABOUT.contacts.forEach(c => {
+        const el = document.createElement(c.copy ? "button" : "a");
+        if (c.copy) {
+            el.type = "button";
+            el.addEventListener("click", () => copyToClipboard(c.copy, el));
+        } else {
+            el.href = c.url;
+            el.target = "_blank";
+            el.rel = "noopener noreferrer";
+        }
+        const ico = document.createElement("span");
+        ico.className = "ico"; ico.textContent = c.icon;
+        const label = document.createElement("span");
+        label.className = "c-label";
+        label.textContent = t(c.label);
+        label.dataset.orig = label.textContent;
+        el.appendChild(ico); el.appendChild(label);
+        cs.appendChild(el);
+    });
+}
+
+/* 邊框泛光：金色光暈跟著游標跑（ABOUT 面板與作品詳細頁共用） */
+function bindGlow(box) {
+    if (!box) return;
+    box.addEventListener("mousemove", e => {
+        const r = box.getBoundingClientRect();
+        box.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        box.style.setProperty("--my", (e.clientY - r.top) + "px");
+        box.classList.add("glow");
+    });
+    box.addEventListener("mouseleave", () => box.classList.remove("glow"));
+}
+
+/* 技能方塊：外框亮度依與游標的距離變化 */
+const CHIP_GLOW_RADIUS = 150;
+function bindChipGlow() {
+    const box = document.querySelector(".about .pxb");
+    if (!box) return;
+    const fade = () => document.querySelectorAll("#skills .chip")
+        .forEach(c => c.style.setProperty("--p", 0));
+    box.addEventListener("mousemove", e => {
+        document.querySelectorAll("#skills .chip").forEach(c => {
+            const r = c.getBoundingClientRect();
+            const dx = e.clientX - (r.left + r.width / 2);
+            const dy = e.clientY - (r.top + r.height / 2);
+            const d = Math.hypot(dx, dy);
+            c.style.setProperty("--p", Math.max(0, 1 - d / CHIP_GLOW_RADIUS).toFixed(3));
+        });
+    });
+    box.addEventListener("mouseleave", fade);
+}
 
 /* ---------- 分類標籤 ---------- */
 /* 只取出「有作品」的分類，空分類不顯示在標籤列 */
@@ -183,7 +291,7 @@ function coverEl(cover, title, small) {
         } else if (small) {
             /* 卡片：靜音自動循環播放的預覽（點卡片仍是開詳細頁） */
             const f = document.createElement("iframe");
-            f.src = `https://www.youtube.com/embed/${yt.id}?autoplay=1&mute=1&loop=1&playlist=${yt.id}&controls=0&playsinline=1&rel=0`;
+            f.src = `https://www.youtube.com/embed/${yt.id}?autoplay=1&mute=1&loop=1&playlist=${yt.id}&controls=0&playsinline=1&rel=0&enablejsapi=1`;
             f.title = title + t(UI.previewAlt);
             f.allow = "autoplay; encrypted-media";
             f.tabIndex = -1;
@@ -281,6 +389,17 @@ function sec(title, node) {
     d.appendChild(h); d.appendChild(node);
     return d;
 }
+/* 控制卡片上的 YouTube 預覽：詳細頁開啟時暫停，關閉後恢復，
+   避免同時有多個播放器在解碼造成卡頓 */
+function cardPreviews(action) {
+    document.querySelectorAll("#grid .cover iframe").forEach(f => {
+        try {
+            f.contentWindow.postMessage(
+                JSON.stringify({ event: "command", func: action, args: [] }), "*");
+        } catch (e) { /* 播放器還沒就緒就略過 */ }
+    });
+}
+
 function openModal(p, trigger) {
     lastFocus = trigger;
     currentProject = p;
@@ -381,6 +500,7 @@ function openModal(p, trigger) {
         mBody.appendChild(sec(t(UI.links), links));
     }
 
+    cardPreviews("pauseVideo");
     backdrop.classList.add("open");
     mBody.scrollTop = 0;   /* 重置捲動位置，避免繼承上一次開啟的狀態 */
     document.body.style.overflow = "hidden";
@@ -388,6 +508,7 @@ function openModal(p, trigger) {
 }
 function closeModal() {
     backdrop.classList.remove("open");
+    cardPreviews("playVideo");
     currentProject = null;
     document.body.style.overflow = "";
     mBody.querySelectorAll("video").forEach(v => v.pause());
@@ -402,5 +523,9 @@ document.addEventListener("keydown", e => {
 document.documentElement.lang = lang;
 renderLangBtns();
 applyUI();
+renderAbout();
+bindGlow(document.querySelector(".about .pxb"));
+bindGlow(document.querySelector(".modal.pxb"));
+bindChipGlow();
 renderTabs();
 renderGrid();

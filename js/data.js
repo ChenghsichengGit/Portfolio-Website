@@ -461,3 +461,46 @@ const PROJECTS = [
         ]
     }
 ];
+
+/* ============================================================
+ * ③ 關於我 —— 自我介紹、技能、聯絡方式
+ *    文字一樣支援多語系物件，寫法同上方作品資料
+ * ============================================================ */
+const ABOUT = {
+    /* TODO：暫定內容，之後換成正式的自我介紹 */
+    intro: {
+        "zh-Hant": "（暫定內容）軟體工程師，以 C# 為主要語言，開發範圍涵蓋 Unity 客戶端、.NET 伺服器與實體硬體整合。",
+        "zh-Hans": "（暂定内容）软件工程师，以 C# 为主要语言，开发范围涵盖 Unity 客户端、.NET 服务器与实体硬件整合。",
+        en: "(Placeholder) Software engineer working mainly in C#, across Unity clients, .NET servers and physical hardware integration.",
+        ja: "（暫定テキスト）C# を主言語とするソフトウェアエンジニア。Unity クライアント、.NET サーバー、実機ハードウェア統合までを担当。"
+    },
+    skills: [
+        {
+            group: { "zh-Hant": "語言", "zh-Hans": "语言", en: "Languages", ja: "言語" },
+            items: ["C#", "HLSL / Shader", "SQL"]
+        },
+        {
+            group: { "zh-Hant": "引擎與框架", "zh-Hans": "引擎与框架", en: "Engines & Frameworks", ja: "エンジン・フレームワーク" },
+            items: ["Unity", ".NET 8", "WinForms"]
+        },
+        {
+            group: { "zh-Hant": "函式庫與工具", "zh-Hans": "函数库与工具", en: "Libraries & Tools", ja: "ライブラリ・ツール" },
+            items: ["DOTween", "Odin Inspector", "UniTask", "Git", "CI"]
+        },
+        {
+            group: { "zh-Hant": "系統與整合", "zh-Hans": "系统与整合", en: "Systems & Integration", ja: "システム・連携" },
+            items: ["MySQL", "TCP Socket", "Steamworks API",
+                { "zh-Hant": "RS232 / 硬體 SDK", "zh-Hans": "RS232 / 硬件 SDK", en: "RS232 / Device SDKs", ja: "RS232 / デバイス SDK" }]
+        },
+        {
+            group: { "zh-Hant": "其他", "zh-Hans": "其他", en: "Other", ja: "その他" },
+            items: ["Blender / Photoshop / Aseprite"]
+        }
+    ],
+    /* copy：填入要複製的文字，點擊後複製到剪貼簿（不開新分頁）
+       url ：一般連結，點擊開新分頁 */
+    contacts: [
+        { icon: "⌂", label: "GITHUB", url: "https://github.com/ChenghsichengGit" },
+        { icon: "✉", label: "chenghsicheng@gmail.com", copy: "chenghsicheng@gmail.com" }
+    ]
+};

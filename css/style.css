@@ -19,6 +19,8 @@
     --ink-dim: #9a94b8;
     --gold: #ffb830;
     --gold-deep: #c77f10;
+    --gold-rgb: 255, 184, 48;
+    --gold-deep-rgb: 199, 127, 16;
     --teal: #4fd8b0;
     --magenta: #ff6ea9;
     --shadow: rgba(0, 0, 0, .5);
@@ -45,6 +47,8 @@ html[lang="ja"] {
     --ink-dim: #6f6a80;
     --gold: #b06a00;
     --gold-deep: #8a5200;
+    --gold-rgb: 176, 106, 0;
+    --gold-deep-rgb: 138, 82, 0;
     --teal: #0e8f6e;
     --magenta: #c23a72;
     --shadow: rgba(60, 50, 20, .25);
@@ -111,6 +115,47 @@ body::after {
             calc(100% - var(--px)) 100%, var(--px) 100%, var(--px) calc(100% - var(--px)),
             0 calc(100% - var(--px)));
     height: 100%;
+}
+
+/* ============================================================
+   互動語言（全站共用）
+
+   可點擊：方形 + 3px 外框 + 硬陰影；滑過整體上浮、按下整體下壓
+   資訊類：不用方塊、不做整體動態（見 .tag / .chip）
+   ============================================================ */
+.tab,
+.lang-btn,
+#themeBtn,
+#closeBtn,
+.link-btn,
+.contacts a,
+.contacts button {
+    cursor: pointer;
+    border: 3px solid var(--border);
+    box-shadow: 3px 3px 0 var(--shadow);
+    transition: transform .1s, box-shadow .1s, background .15s, color .15s, border-color .15s, padding .15s;
+}
+
+.tab:hover,
+.lang-btn:hover,
+#themeBtn:hover,
+#closeBtn:hover,
+.link-btn:hover,
+.contacts a:hover,
+.contacts button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--shadow);
+}
+
+.tab:active,
+.lang-btn:active,
+#themeBtn:active,
+#closeBtn:active,
+.link-btn:active,
+.contacts a:active,
+.contacts button:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--shadow);
 }
 
 /* ============================================================
@@ -182,27 +227,18 @@ header {
 }
 
 .lang-btn {
-    cursor: pointer;
     font: inherit;
     font-size: 14px;
     line-height: 1;
     color: var(--ink-dim);
     background: var(--panel);
-    border: 3px solid var(--border);
     padding: 9px 8px;
     min-width: 38px;
-    box-shadow: 3px 3px 0 var(--shadow);
-    transition: color .15s, background .15s, transform .08s, box-shadow .08s;
 }
 
 .lang-btn:hover {
     color: var(--ink);
     background: var(--panel-2)
-}
-
-.lang-btn:active {
-    transform: translate(3px, 3px);
-    box-shadow: 0 0 0 var(--shadow)
 }
 
 .lang-btn[aria-pressed="true"] {
@@ -213,8 +249,6 @@ header {
 
 /* 日夜切換 */
 #themeBtn {
-    cursor: pointer;
-    border: 3px solid var(--border);
     background: var(--panel);
     color: var(--gold);
     font-size: 16px;
@@ -223,17 +257,10 @@ header {
     display: flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 3px 3px 0 var(--shadow);
-    transition: transform .08s, box-shadow .08s, background .25s;
 }
 
 #themeBtn:hover {
     background: var(--panel-2)
-}
-
-#themeBtn:active {
-    transform: translate(3px, 3px);
-    box-shadow: 0 0 0 var(--shadow)
 }
 
 #themeBtn .lbl {
@@ -246,7 +273,8 @@ header {
    ============================================================ */
 nav {
     max-width: 1180px;
-    margin: 26px auto 8px;
+    /* 上邊距為 0：與 ABOUT 大標到面板的間距一致（間距由 .sec-head 負責） */
+    margin: 0 auto 8px;
     padding: 0 20px
 }
 
@@ -257,17 +285,13 @@ nav {
 }
 
 .tab {
-    cursor: pointer;
     position: relative;
     font-size: 16px;
     letter-spacing: 1px;
     color: var(--ink-dim);
     background: var(--panel);
-    border: 3px solid var(--border);
-    padding: 9px 18px;
     /* 未選取：左右對稱，沒有預留游標空位 */
-    box-shadow: 3px 3px 0 var(--shadow);
-    transition: color .15s, background .15s, transform .08s, box-shadow .08s, padding .15s;
+    padding: 9px 18px;
 }
 
 .tab[aria-selected="true"] {
@@ -289,11 +313,6 @@ nav {
 .tab:hover {
     color: var(--ink);
     background: var(--panel-2)
-}
-
-.tab:active {
-    transform: translate(3px, 3px);
-    box-shadow: 0 0 0 var(--shadow)
 }
 
 .tab[aria-selected="true"] {
@@ -342,7 +361,11 @@ main {
 }
 
 .card:hover {
-    transform: translateY(-4px)
+    transform: translate(-3px, -3px)
+}
+
+.card:active {
+    transform: translate(2px, 2px)
 }
 
 .card:hover .pxb {
@@ -408,7 +431,6 @@ main {
     color: var(--bg-deep);
     background: var(--gold);
     padding: 5px 7px;
-    box-shadow: 2px 2px 0 var(--shadow);
 }
 
 .card-body {
@@ -422,17 +444,22 @@ main {
     transition: color .15s;
 }
 
+/* 標籤：資訊類，用 # 前綴而非方塊，避免被當成可點 */
 .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px
+    gap: 2px 14px;
 }
 
 .tag {
     font-size: 13px;
     color: var(--teal);
-    border: 2px solid var(--teal);
-    padding: 1px 8px;
+}
+
+.tag::before {
+    content: "#";
+    opacity: .55;
+    margin-right: 2px;
 }
 
 .empty {
@@ -507,25 +534,16 @@ main {
 }
 
 #closeBtn {
-    cursor: pointer;
     flex: none;
-    border: 3px solid var(--border);
     background: var(--panel-2);
     color: var(--ink);
     font-size: 14px;
     padding: 8px 10px;
-    box-shadow: 2px 2px 0 var(--shadow);
-    transition: transform .08s, box-shadow .08s;
 }
 
 #closeBtn:hover {
     color: var(--magenta);
     border-color: var(--magenta)
-}
-
-#closeBtn:active {
-    transform: translate(2px, 2px);
-    box-shadow: 0 0 0 var(--shadow)
 }
 
 .m-scroll {
@@ -578,17 +596,22 @@ main {
     color: var(--ink)
 }
 
+/* 技術項目：資訊類，純文字並以「・」分隔 */
 .chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px
+    align-items: baseline;
 }
 
 .chip {
-    font-size: 14px;
-    background: var(--panel-2);
-    border: 2px solid var(--border);
-    padding: 4px 10px;
+    font-size: 15px;
+    color: var(--ink);
+}
+
+.chip:not(:last-child)::after {
+    content: "・";
+    color: var(--ink-dim);
+    margin: 0 5px;
 }
 
 .role-list {
@@ -659,20 +682,13 @@ main {
     letter-spacing: 1px;
     color: var(--bg-deep);
     background: var(--gold);
-    border: 3px solid var(--gold-deep);
+    border-color: var(--gold-deep);
     padding: 11px 14px;
-    box-shadow: 3px 3px 0 var(--shadow);
-    transition: transform .08s, box-shadow .08s, background .15s;
 }
 
 .link-btn:hover {
     background: var(--teal);
     border-color: var(--teal)
-}
-
-.link-btn:active {
-    transform: translate(3px, 3px);
-    box-shadow: 0 0 0 var(--shadow)
 }
 
 .link-btn .ico {
@@ -692,22 +708,35 @@ footer {
 }
 
 /* 捲軸樣式 */
+/* 捲軸：方正的像素風，滑桿本身就是一塊面板 */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) var(--bg-deep);
+}
+
 ::-webkit-scrollbar {
-    width: 12px;
-    height: 12px
+    width: 14px;
+    height: 14px
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--bg-deep)
+    background: var(--bg-deep);
+    box-shadow: inset 3px 0 0 var(--panel-2);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border: 3px solid var(--bg-deep)
+    background: var(--panel-2);
+    border: 3px solid var(--border);
+    transition: background .15s, border-color .15s;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--gold-deep)
+    background: var(--gold-deep);
+    border-color: var(--gold);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--bg-deep)
 }
 
 @media (prefers-reduced-motion:reduce) {
@@ -731,5 +760,173 @@ footer {
 
     .m-head h2 {
         font-size: 19px
+    }
+}
+
+/* ============================================================
+   關於我（ABOUT）與區塊大標
+   ============================================================ */
+.about,
+.works-head {
+    max-width: 1180px;
+    margin: 30px auto 0;
+    padding: 0 20px;
+}
+
+.works-head {
+    margin-top: 34px
+}
+
+.sec-head {
+    font-size: 20px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sec-head::after {
+    content: "";
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+}
+
+.about-panel {
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    gap: 30px;
+    padding: 24px 26px;
+}
+
+.col-title {
+    font-size: 15px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+#aboutIntro {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--ink);
+    margin-bottom: 18px;
+}
+
+/* 技能：固定標籤欄寬，各排的標籤從同一條線開始 */
+#skills {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    column-gap: 14px;
+    row-gap: 9px;
+}
+
+/* 讓每一排的標籤與標籤、chips 與 chips 共用同一組格線欄 */
+.sk-row {
+    display: contents
+}
+
+.sk-label {
+    font-size: 14px;
+    color: var(--teal);
+    padding-top: 5px;
+    white-space: nowrap;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.contacts a,
+.contacts button {
+    display: inline-flex;
+    font: inherit;
+    /* button 預設有 buttonface 底色與置中對齊，要清掉才會和 <a> 一致 */
+    background: none;
+    text-align: inherit;
+    align-items: center;
+    gap: 7px;
+    text-decoration: none;
+    font-size: 14px;
+    color: var(--teal);
+    border-color: var(--teal);
+    padding: 5px 11px;
+}
+
+.contacts a:hover,
+.contacts button:hover {
+    background: var(--teal);
+    color: var(--bg-deep);
+}
+
+/* 複製成功後的短暫回饋 */
+.contacts button.copied {
+    background: var(--gold);
+    border-color: var(--gold-deep);
+    color: var(--bg-deep);
+}
+
+@media (max-width:760px) {
+    .about-panel {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+}
+
+/* ============================================================
+   游標金光：邊框與技能方塊（--mx / --my / --p 由 main.js 更新）
+   ============================================================ */
+
+/* 註冊成可動畫的數值型自訂屬性，淡入淡出才會平滑（直接切換漸層會瞬跳） */
+@property --glow {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
+
+.about .pxb,
+.modal.pxb {
+    --mx: 50%;
+    --my: 50%;
+    --glow: 0;
+    background:
+        radial-gradient(260px circle at var(--mx) var(--my),
+            rgba(var(--gold-rgb), var(--glow)) 0%,
+            rgba(var(--gold-deep-rgb), calc(var(--glow) * .55)) 28%,
+            rgba(0, 0, 0, 0) 62%),
+        var(--border);
+    transition: --glow .45s ease;
+}
+
+.about .pxb.glow,
+.modal.pxb.glow {
+    --glow: 1
+}
+
+/* 技能方塊：外框依游標距離在邊框色與金色之間漸變，
+   不位移、不換游標，避免被當成可點擊 */
+#skills .chip {
+    color: color-mix(in srgb, var(--gold) calc(var(--p, 0) * 100%), var(--ink));
+    transition: color .18s ease;
+}
+
+#skills .chip::after {
+    color: var(--ink-dim)
+}
+
+/* 窄螢幕：技能標籤改放在 chips 上方 */
+@media (max-width:860px) {
+    #skills {
+        grid-template-columns: 1fr;
+        row-gap: 4px;
+    }
+
+    .sk-label {
+        padding-top: 10px
     }
 }
