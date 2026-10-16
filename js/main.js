@@ -148,7 +148,19 @@ function copyToClipboard(text, el) {
 }
 
 function renderAbout() {
-    $("#aboutIntro").textContent = t(ABOUT.intro);
+    const intro = $("#aboutIntro");
+    intro.innerHTML = "";
+    t(ABOUT.intro).forEach(s => {
+        const ln = document.createElement("span");
+        ln.className = "ln"; ln.textContent = s;
+        intro.appendChild(ln);
+    });
+    const hintText = t(ABOUT.introHint);
+    if (hintText) {
+        const hint = document.createElement("span");
+        hint.className = "hint"; hint.textContent = hintText;
+        intro.appendChild(hint);
+    }
 
     const sk = $("#skills");
     sk.innerHTML = "";

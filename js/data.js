@@ -467,11 +467,35 @@ const PROJECTS = [
  *    文字一樣支援多語系物件，寫法同上方作品資料
  * ============================================================ */
 const ABOUT = {
+    /* intro：每個語言一組段落，渲染時各自成一段 */
     intro: {
-        "zh-Hant": "我是一名軟體工程師，以 C# 為主要語言。曾參與獨立遊戲《炎姬》的開發，負責 UI 系統、編輯器工具、第三方 API 整合與效能優化；也做過一台實體德州撲克機台的完整軟體，從客戶端介面、伺服器邏輯與資料庫，到與硬體裝置的通訊和現場維運工具。詳情請見下方作品。",
-        "zh-Hans": "我是一名软件工程师，以 C# 为主要语言。曾参与独立游戏《炎姬》的开发，负责 UI 系统、编辑器工具、第三方 API 整合与性能优化；也做过一台实体德州扑克机台的完整软件，从客户端界面、服务器逻辑与数据库，到与硬件设备的通信和现场运维工具。详情请见下方作品。",
-        en: "Software engineer, working mainly in C#. I worked on the indie game Homura Hime — UI systems, editor tooling, third-party API integration and performance optimization — and built the complete software for a physical Texas Hold'em cabinet, from the client interface, server logic and database to hardware communication and on-site maintenance tools. See the works below for details.",
-        ja: "C# を主言語とするソフトウェアエンジニアです。インディーゲーム『炎姬』の開発に参加し、UI システム、エディタ拡張、サードパーティ API 連携、パフォーマンス最適化を担当しました。また実機テキサスホールデム筐体のソフトウェアを一通り手がけ、クライアントの画面、サーバーロジックとデータベースから、ハードウェアとの通信や現場向けの運用ツールまで担当しています。詳しくは下の作品をご覧ください。"
+        "zh-Hant": [
+            "我是一名軟體工程師，以 C# 為主要語言。",
+            "曾參與獨立遊戲《炎姬》的開發，負責 UI 系統、編輯器工具、第三方 API 整合與效能優化。",
+            "也做過一台實體德州撲克機台的完整軟體，從客戶端介面、伺服器邏輯與資料庫，到與硬體裝置的通訊和現場維運工具。"
+        ],
+        "zh-Hans": [
+            "我是一名软件工程师，以 C# 为主要语言。",
+            "曾参与独立游戏《炎姬》的开发，负责 UI 系统、编辑器工具、第三方 API 整合与性能优化。",
+            "也做过一台实体德州扑克机台的完整软件，从客户端界面、服务器逻辑与数据库，到与硬件设备的通信和现场运维工具。"
+        ],
+        en: [
+            "Software engineer, working mainly in C#.",
+            "I worked on the indie game Homura Hime — UI systems, editor tooling, third-party API integration and performance optimization.",
+            "I also built the complete software for a physical Texas Hold'em cabinet, from the client interface, server logic and database to hardware communication and on-site maintenance tools."
+        ],
+        ja: [
+            "C# を主言語とするソフトウェアエンジニアです。",
+            "インディーゲーム『炎姬』の開発に参加し、UI システム、エディタ拡張、サードパーティ API 連携、パフォーマンス最適化を担当しました。",
+            "また実機テキサスホールデム筐体のソフトウェアを一通り手がけ、クライアントの画面、サーバーロジックとデータベースから、ハードウェアとの通信や現場向けの運用ツールまで担当しています。"
+        ]
+    },
+    /* introHint：自我介紹末尾的指引，渲染成淡色小字 */
+    introHint: {
+        "zh-Hant": "詳情請見下方作品。",
+        "zh-Hans": "详情请见下方作品。",
+        en: "See the works below for details.",
+        ja: "詳しくは下の作品をご覧ください。"
     },
     skills: [
         {
