@@ -162,20 +162,8 @@ const PROJECTS = [
                 ]
             },
             {
-                group: { "zh-Hant": "跨端架構與並行控制", "zh-Hans": "跨端架构与并发控制", en: "Cross-tier Architecture & Concurrency", ja: "クライアント・サーバー設計と並行制御" },
+                group: { "zh-Hant": "前端架構", "zh-Hans": "前端架构", en: "Client Architecture", ja: "クライアント設計" },
                 items: [
-                    {
-                        "zh-Hant": "自訂封包協定：cmd／pn 兩層路由、錯誤通道分工、狀態同步規則",
-                        "zh-Hans": "自定义封包协议：cmd／pn 两层路由、错误通道分工、状态同步规则",
-                        en: "Custom packet protocol: two-level cmd / pn routing, a separate error channel, and state-sync rules",
-                        ja: "独自パケットプロトコル：cmd／pn の二層ルーティング、エラーチャネルの分離、状態同期ルール"
-                    },
-                    {
-                        "zh-Hant": "雙層鎖設計與鎖序規則、死鎖排除",
-                        "zh-Hans": "双层锁设计与锁序规则、死锁排除",
-                        en: "Two-level locking with a fixed lock order, and deadlock elimination",
-                        ja: "二層ロック設計とロック順序のルール、デッドロックの解消"
-                    },
                     {
                         "zh-Hant": "前端 Model／Controller／Presenter／View 分層與事件驅動資料流",
                         "zh-Hans": "前端 Model／Controller／Presenter／View 分层与事件驱动数据流",
@@ -198,6 +186,12 @@ const PROJECTS = [
                         "zh-Hans": "钞票机、票券打印机、读卡机、IO 按钮板的通讯与控制",
                         en: "Communication and control for the bill acceptor, ticket printer, card reader and IO button board",
                         ja: "紙幣識別機、チケットプリンタ、カードリーダー、IO ボタン基板の通信と制御"
+                    },
+                    {
+                        "zh-Hant": "MySQL 資料表設計與帳務記錄",
+                        "zh-Hans": "MySQL 数据表设计与账务记录",
+                        en: "MySQL schema design and transaction records",
+                        ja: "MySQL のテーブル設計と入出金記録"
                     }
                 ]
             },
@@ -215,12 +209,6 @@ const PROJECTS = [
                         "zh-Hans": "Unity 编辑器调试窗口，让一个人就能测试六个座位的牌局",
                         en: "A Unity editor debug window that lets one person test a six-seat hand alone",
                         ja: "Unity エディタ上のデバッグウィンドウにより、1 人で 6 席分のハンドをテスト可能に"
-                    },
-                    {
-                        "zh-Hant": "單元測試覆蓋牌型評估與彩池分配",
-                        "zh-Hans": "单元测试覆盖牌型评估与彩池分配",
-                        en: "Unit tests covering hand evaluation and pot distribution",
-                        ja: "役判定とポット分配をカバーするユニットテスト"
                     }
                 ]
             }
@@ -261,35 +249,6 @@ const PROJECTS = [
                     en: "Money operations cannot be undone, so the order of the steps decides whether money goes missing. Ticket-out was changed to print first and deduct only after the printer reports success — the original order deducted first, so a printer fault swallowed the player's balance. Cash-in holds the note in escrow and only drops it into the stacker once the server confirms the credit. Ticket redemption validates and marks the ticket as used in a single conditional UPDATE, relying on database atomicity so the same ticket cannot be credited on two machines at once.",
                     ja: "金銭処理は取り消せないため、手順の順序がそのまま「お金が消えるかどうか」を決める。チケット発券は「先に印刷し、成功の報告を受けてからサーバーが残高を引く」方式へ変更した（元は先に引いていたため、プリンタ故障でプレイヤーの残高が消えていた）。紙幣投入はいったんエスクローで保持し、サーバーがクレジット加算を確認してから金庫に収める。チケット精算は検証と使用済みフラグを単一の条件付き UPDATE で行い、DB の原子性によって同じチケットが 2 台で二重計上されるのを防いでいる。"
                 }
-            },
-            {
-                title: { "zh-Hant": "以不變式取代固定案例的測試", "zh-Hans": "以不变量取代固定用例的测试", en: "Testing with Invariants Instead of Fixed Cases", ja: "固定ケースではなく不変条件でテストする" },
-                body: {
-                    "zh-Hant": "彩池與牌型是「算錯就掉錢」的模組。斷言不寫固定期望值（那等於在測試裡重新實作一次被測邏輯），而是隨機產生大量牌局驗證不變式：分配金額加抽水等於總投入、任何人所得不超過「每家跟得到他的那部分」、棄牌者不得分錢、沒有任何其他五張組合能贏過被選中的那組。",
-                    "zh-Hans": "彩池与牌型是「算错就掉钱」的模块。断言不写固定期望值（那等于在测试里重新实现一次被测逻辑），而是随机产生大量牌局验证不变量：分配金额加抽水等于总投入、任何人所得不超过「每家跟得到他的那部分」、弃牌者不得分钱、没有任何其他五张组合能赢过被选中的那组。",
-                    en: "Pot distribution and hand evaluation are modules where a wrong answer means lost money. Instead of asserting fixed expected values — which amounts to reimplementing the logic under test inside the test itself — the suite generates large numbers of random hands and checks invariants: distributed amounts plus rake equal total contributions; nobody receives more than the sum of what each opponent could match against them; folded and non-participating players receive nothing; and no other five-card combination beats the one selected.",
-                    ja: "ポット計算と役判定は「間違えれば金が消える」モジュールだ。固定の期待値を書くアサーション（テスト内で被テストロジックを実装し直すのと同じ）ではなく、ランダムなハンドを大量に生成して不変条件を検証している：分配額とレーキの合計が総投入額と一致すること、誰も「各対戦相手が自分に対してコールできた分」の合計を超えて受け取らないこと、フォールドや不参加のプレイヤーが配当を得ないこと、選ばれた 5 枚より強い組み合わせが他に存在しないこと。"
-                }
-            }
-        ],
-        limits: [
-            {
-                "zh-Hant": "流程由 client 推動的代價是重連後牌局會停住（server 等不到下一個請求）。評估過「client 依狀態補送」，但發牌類狀態的重入安全性未經驗證，猜錯會重複發牌或重複結算，因此改採「由 server 作廢本手」的方向",
-                "zh-Hans": "流程由 client 推动的代价是重连后牌局会停住（server 等不到下一个请求）。评估过「client 依状态补送」，但发牌类状态的重入安全性未经验证，猜错会重复发牌或重复结算，因此改采「由 server 作废本手」的方向",
-                en: "Because the flow is client-driven, a reconnect leaves the hand stuck — the server never receives the next request. Having the client re-send based on state was considered, but the reentrancy safety of dealing states is unverified and a wrong guess would deal or settle twice, so the chosen direction is to have the server void the hand instead",
-                ja: "進行がクライアント駆動であるため、再接続後はハンドが止まってしまう（サーバーが次のリクエストを受け取れない）。「クライアントが状態に応じて再送する」案も検討したが、配布系ステートの再入安全性が未検証で、誤れば二重配布や二重精算になる。そのため「サーバー側でそのハンドを無効化する」方向を採った"
-            },
-            {
-                "zh-Hant": "所有座位共用單一連線是目前可行的原因，也是未來拆分成多機時第一個要改的地方",
-                "zh-Hans": "所有座位共用单一连接是目前可行的原因，也是未来拆分成多机时第一个要改的地方",
-                en: "All seats sharing a single connection is what makes the current design workable, and it is also the first thing that must change when the cabinet is split into multiple machines",
-                ja: "全席が単一のコネクションを共有している点は、現状の設計が成立している理由であると同時に、将来複数筐体へ分割する際に真っ先に変更すべき箇所でもある"
-            },
-            {
-                "zh-Hant": "讀卡機使用鍵盤模擬，在 Windows 下與 Unity 搶註冊原始輸入，視窗焦點切換後會失效。評估過多種軟體解法皆無效，結論是應請設備商切換為虛擬序列埠模式",
-                "zh-Hans": "读卡机使用键盘模拟，在 Windows 下与 Unity 抢注册原始输入，窗口焦点切换后会失效。评估过多种软件解法皆无效，结论是应请设备商切换为虚拟串口模式",
-                en: "The card reader runs in keyboard-emulation mode and competes with Unity for raw input registration on Windows, so it stops working once the window loses and regains focus. Several software workarounds were evaluated and none held up; the conclusion is to ask the vendor to switch the device to virtual serial port mode, which is the only real fix",
-                ja: "カードリーダーがキーボードエミュレーション動作のため、Windows 上で Unity と Raw Input の登録を奪い合い、ウィンドウのフォーカス切り替え後に反応しなくなる。複数のソフトウェア的回避策を試したがいずれも有効ではなく、結論としてはメーカーに仮想シリアルポートモードへの切り替えを依頼するのが唯一の根本解決となる"
             }
         ]
     },
@@ -499,25 +458,30 @@ const ABOUT = {
     },
     skills: [
         {
-            group: { "zh-Hant": "語言", "zh-Hans": "语言", en: "Languages", ja: "言語" },
-            items: ["C#", "HLSL / Shader", "SQL"]
+            group: { "zh-Hant": "語言與框架", "zh-Hans": "语言与框架", en: "Languages & Frameworks", ja: "言語・フレームワーク" },
+            items: ["C#", "SQL", ".NET 8"]
         },
         {
-            group: { "zh-Hant": "引擎與框架", "zh-Hans": "引擎与框架", en: "Engines & Frameworks", ja: "エンジン・フレームワーク" },
-            items: ["Unity", ".NET 8", "WinForms"]
+            group: "Unity",
+            items: ["UGUI",
+                { "zh-Hant": "Timeline 擴充", "zh-Hans": "Timeline 扩充", en: "Timeline extensions", ja: "Timeline 拡張" },
+                "Unity Localization", "DOTween", "Odin Inspector", "UniTask"]
         },
         {
-            group: { "zh-Hant": "函式庫與工具", "zh-Hans": "函数库与工具", en: "Libraries & Tools", ja: "ライブラリ・ツール" },
-            items: ["DOTween", "Odin Inspector", "UniTask", "Git", "CI"]
+            group: { "zh-Hant": "C# 工程", "zh-Hans": "C# 工程", en: "C# Engineering", ja: "C# エンジニアリング" },
+            items: [
+                { "zh-Hant": "async / await 並行控制", "zh-Hans": "async / await 并行控制", en: "async / await & concurrency", ja: "async / await・並行制御" },
+                { "zh-Hant": "MVC / MVP 分層架構", "zh-Hans": "MVC / MVP 分层架构", en: "MVC / MVP layering", ja: "MVC / MVP レイヤ設計" },
+                { "zh-Hant": "設計模式", "zh-Hans": "设计模式", en: "Design patterns", ja: "デザインパターン" }]
         },
         {
             group: { "zh-Hant": "系統與整合", "zh-Hans": "系统与整合", en: "Systems & Integration", ja: "システム・連携" },
-            items: ["MySQL", "TCP Socket", "Steamworks API",
+            items: ["MySQL", "Steamworks API",
                 { "zh-Hant": "RS232 / 硬體 SDK", "zh-Hans": "RS232 / 硬件 SDK", en: "RS232 / Device SDKs", ja: "RS232 / デバイス SDK" }]
         },
         {
-            group: { "zh-Hant": "其他", "zh-Hans": "其他", en: "Other", ja: "その他" },
-            items: ["Blender / Photoshop / Aseprite"]
+            group: { "zh-Hant": "工具", "zh-Hans": "工具", en: "Tools", ja: "ツール" },
+            items: ["Git", "Fork", "Visual Studio", "Claude Code"]
         }
     ],
     /* copy：填入要複製的文字，點擊後複製到剪貼簿（不開新分頁）
