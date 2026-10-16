@@ -810,7 +810,7 @@ footer {
 
 #aboutIntro {
     font-size: 16px;
-    line-height: 2;
+    line-height: 1.95;
     color: var(--ink);
     margin-bottom: 18px;
 }
