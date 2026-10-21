@@ -458,25 +458,41 @@ const ABOUT = {
     },
     skills: [
         {
-            group: { "zh-Hant": "語言與框架", "zh-Hans": "语言与框架", en: "Languages & Frameworks", ja: "言語・フレームワーク" },
-            items: ["C#", "SQL", ".NET 8"]
+            group: { "zh-Hant": "語言", "zh-Hans": "语言", en: "Languages", ja: "言語" },
+            items: ["C#", "SQL"]
+        },
+        {
+            group: { "zh-Hant": "後端", "zh-Hans": "后端", en: "Backend", ja: "バックエンド" },
+            items: [".NET 8", "ASP.NET Core", "EF Core"]
+        },
+        {
+            group: { "zh-Hant": "桌面應用", "zh-Hans": "桌面应用", en: "Desktop", ja: "デスクトップ" },
+            items: ["WPF", "MVVM"]
+        },
+        {
+            group: { "zh-Hant": "資料庫", "zh-Hans": "数据库", en: "Database", ja: "データベース" },
+            items: ["MySQL", "SQL Server"]
+        },
+        {
+            group: { "zh-Hant": "測試部署", "zh-Hans": "测试部署", en: "Testing & CI", ja: "テスト・CI" },
+            items: ["xUnit", "Docker", "GitHub Actions"]
         },
         {
             group: "Unity",
-            items: ["UGUI",
+            items: ["UGUI", "DOTween", "Odin Inspector", "UniTask",
                 { "zh-Hant": "Timeline 擴充", "zh-Hans": "Timeline 扩充", en: "Timeline extensions", ja: "Timeline 拡張" },
-                "Unity Localization", "DOTween", "Odin Inspector", "UniTask"]
+                "Unity Localization"]
         },
         {
-            group: { "zh-Hant": "C# 工程", "zh-Hans": "C# 工程", en: "C# Engineering", ja: "C# エンジニアリング" },
+            group: { "zh-Hant": "架構", "zh-Hans": "架构", en: "Architecture", ja: "アーキテクチャ" },
             items: [
-                { "zh-Hant": "async / await 並行控制", "zh-Hans": "async / await 并行控制", en: "async / await & concurrency", ja: "async / await・並行制御" },
                 { "zh-Hant": "MVC / MVP 分層架構", "zh-Hans": "MVC / MVP 分层架构", en: "MVC / MVP layering", ja: "MVC / MVP レイヤ設計" },
-                { "zh-Hant": "設計模式", "zh-Hans": "设计模式", en: "Design patterns", ja: "デザインパターン" }]
+                { "zh-Hant": "設計模式", "zh-Hans": "设计模式", en: "Design patterns", ja: "デザインパターン" },
+                { "zh-Hant": "async / await 並行控制", "zh-Hans": "async / await 并行控制", en: "async / await & concurrency", ja: "async / await・並行制御" }]
         },
         {
-            group: { "zh-Hant": "系統與整合", "zh-Hans": "系统与整合", en: "Systems & Integration", ja: "システム・連携" },
-            items: ["MySQL", "Steamworks API",
+            group: { "zh-Hant": "整合", "zh-Hans": "整合", en: "Integration", ja: "連携" },
+            items: ["Steamworks API",
                 { "zh-Hant": "RS232 / 硬體 SDK", "zh-Hans": "RS232 / 硬件 SDK", en: "RS232 / Device SDKs", ja: "RS232 / デバイス SDK" }]
         },
         {
