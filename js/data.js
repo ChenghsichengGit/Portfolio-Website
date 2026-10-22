@@ -37,94 +37,6 @@ const CATEGORIES = [
  * ============================================================ */
 const PROJECTS = [
     {
-        title: { "zh-Hant": "炎姬 Homura Hime", "zh-Hans": "炎姬 Homura Hime", en: "Homura Hime", ja: "炎姬 Homura Hime" },
-        categories: ["featured", "project"],
-        tags: ["Unity", { "zh-Hant": "3D 動作", "zh-Hans": "3D 动作", en: "3D Action", ja: "3D アクション" }, "Steam"],
-        cover: { type: "image", src: "https://cdn.akamai.steamstatic.com/steam/apps/1820000/capsule_616x353.jpg" },
-        description: {
-            "zh-Hant": "追求動漫美學與立體彈幕的 3D 動作遊戲，玩家扮演除妖使「炎姬」，以近戰與遠程連招、閃避與彈刀對抗妖魔。由 Crimson Dusk 開發、PLAYISM 發行，2026 年 3 月於 Steam 上市。我在專案中負責 UI 系統開發、編輯器工具、第三方 API 整合與效能優化除錯。",
-            "zh-Hans": "追求动漫美学与立体弹幕的 3D 动作游戏，玩家扮演除妖使「炎姬」，以近战与远程连招、闪避与弹刀对抗妖魔。由 Crimson Dusk 开发、PLAYISM 发行，2026 年 3 月于 Steam 上市。我在项目中负责 UI 系统开发、编辑器工具、第三方 API 整合与性能优化除错。",
-            en: "A 3D action game built around anime aesthetics and three-dimensional bullet-hell combat. Players take the role of the exorcist Homura Hime, weaving melee and ranged combos while dodging and parrying through waves of demons. Developed by Crimson Dusk, published by PLAYISM, released on Steam in March 2026. I worked on UI systems, editor tooling, third-party API integration, and performance optimization and debugging.",
-            ja: "アニメ的な表現と立体弾幕を追求した 3D アクションゲーム。プレイヤーは除妖使「炎姬」として、近接と遠距離のコンボ、回避と弾き返しで妖魔に立ち向かう。Crimson Dusk 開発、PLAYISM 発売、2026 年 3 月に Steam でリリース。私は UI システム開発、エディタ拡張、サードパーティ API 連携、パフォーマンス最適化とデバッグを担当。"
-        },
-        tech: ["Unity", "C#", "UGUI", "Ultimate Inventory System", "Unity Localization",
-            { "zh-Hant": "Timeline 擴充", "zh-Hans": "Timeline 扩展", en: "Timeline Extensions", ja: "Timeline 拡張" },
-            "Steamworks API", "Discord Webhook"],
-        roles: [
-            {
-                group: { "zh-Hant": "UI 系統開發與架構", "zh-Hans": "UI 系统开发与架构", en: "UI Systems & Architecture", ja: "UI システム開発と設計" },
-                items: [
-                    {
-                        "zh-Hant": "基於 Unity UGUI 與 Ultimate Inventory System 插件設計並實裝 UI 系統",
-                        "zh-Hans": "基于 Unity UGUI 与 Ultimate Inventory System 插件设计并实装 UI 系统",
-                        en: "Designed and implemented the UI system on Unity UGUI and the Ultimate Inventory System plugin",
-                        ja: "Unity UGUI と Ultimate Inventory System プラグインをベースに UI システムを設計・実装"
-                    },
-                    {
-                        "zh-Hant": "開發 UI 動態控制工具，降低製作 UI 動態效果的製作難度與時間成本",
-                        "zh-Hans": "开发 UI 动态控制工具，降低制作 UI 动态效果的难度与时间成本",
-                        en: "Built a UI motion authoring tool that cut both the difficulty and the time cost of producing UI animations",
-                        ja: "UI モーション制作ツールを開発し、UI 演出の制作難度と工数を削減"
-                    },
-                    {
-                        "zh-Hant": "利用 Unity Localization 實現多語系切換架構",
-                        "zh-Hans": "利用 Unity Localization 实现多语言切换架构",
-                        en: "Implemented the multi-language switching architecture with Unity Localization",
-                        ja: "Unity Localization を用いた多言語切り替え基盤を構築"
-                    }
-                ]
-            },
-            {
-                group: { "zh-Hant": "製作編輯器工具和系統功能", "zh-Hans": "制作编辑器工具和系统功能", en: "Editor Tools & Engine Systems", ja: "エディタ拡張とシステム機能" },
-                items: [
-                    {
-                        "zh-Hant": "針對美術與設計需求開發 Editor 工具，並擴充系統功能（如 Timeline 擴充）",
-                        "zh-Hans": "针对美术与设计需求开发 Editor 工具，并扩充系统功能（如 Timeline 扩展）",
-                        en: "Developed editor tools for art and design needs, and extended engine systems such as Timeline",
-                        ja: "アート・デザインの要望に応じたエディタ拡張を開発し、Timeline などのシステム機能を拡張"
-                    }
-                ]
-            },
-            {
-                group: { "zh-Hant": "第三方 API 整合", "zh-Hans": "第三方 API 整合", en: "Third-party API Integration", ja: "サードパーティ API 連携" },
-                items: [
-                    {
-                        "zh-Hant": "介接 Steamworks API 實作玩家帳號驗證、全球排行榜及成就等系統",
-                        "zh-Hans": "对接 Steamworks API 实现玩家账号验证、全球排行榜及成就等系统",
-                        en: "Integrated the Steamworks API for account authentication, global leaderboards and achievements",
-                        ja: "Steamworks API を介してアカウント認証、グローバルランキング、実績などのシステムを実装"
-                    },
-                    {
-                        "zh-Hant": "使用 Discord Webhook 建立遊戲內回報系統，自動至 Discord 建立討論串",
-                        "zh-Hans": "使用 Discord Webhook 建立游戏内反馈系统，自动在 Discord 建立讨论串",
-                        en: "Built an in-game bug report system on Discord webhooks that opens a thread automatically",
-                        ja: "Discord Webhook でゲーム内報告システムを構築し、Discord 上にスレッドを自動作成"
-                    }
-                ]
-            },
-            {
-                group: { "zh-Hant": "效能優化與除錯", "zh-Hans": "性能优化与除错", en: "Performance & Debugging", ja: "パフォーマンス最適化とデバッグ" },
-                items: [
-                    {
-                        "zh-Hant": "利用 Unity 內建除錯工具尋找調幀原因並協助修復",
-                        "zh-Hans": "利用 Unity 内建调试工具查找掉帧原因并协助修复",
-                        en: "Used Unity's built-in profiling tools to track down frame drops and help fix them",
-                        ja: "Unity 標準のプロファイラでフレーム落ちの原因を特定し、修正を支援"
-                    },
-                    {
-                        "zh-Hant": "負責定位並修復流程、場景及工具等各類 Bug，維持專案穩定度",
-                        "zh-Hans": "负责定位并修复流程、场景及工具等各类 Bug，维持项目稳定度",
-                        en: "Located and fixed bugs across flows, scenes and tools to keep the project stable",
-                        ja: "フロー・シーン・ツールなど各種バグの特定と修正を担当し、プロジェクトの安定性を維持"
-                    }
-                ]
-            }
-        ],
-        links: [
-            { label: "STEAM", url: "https://store.steampowered.com/app/1820000/Homura_Hime/", icon: "▶" }
-        ]
-    },
-    {
         title: {
             "zh-Hant": "K5 實體德州撲克機台",
             "zh-Hans": "K5 实体德州扑克机台",
@@ -333,6 +245,144 @@ const PROJECTS = [
         ]
     },
     {
+        title: { "zh-Hant": "炎姬 Homura Hime", "zh-Hans": "炎姬 Homura Hime", en: "Homura Hime", ja: "炎姬 Homura Hime" },
+        categories: ["featured", "project"],
+        tags: ["Unity", { "zh-Hant": "3D 動作", "zh-Hans": "3D 动作", en: "3D Action", ja: "3D アクション" }, "Steam"],
+        cover: { type: "image", src: "https://cdn.akamai.steamstatic.com/steam/apps/1820000/capsule_616x353.jpg" },
+        description: {
+            "zh-Hant": "追求動漫美學與立體彈幕的 3D 動作遊戲，玩家扮演除妖使「炎姬」，以近戰與遠程連招、閃避與彈刀對抗妖魔。由 Crimson Dusk 開發、PLAYISM 發行，2026 年 3 月於 Steam 上市。我在專案中負責 UI 系統開發、編輯器工具、第三方 API 整合與效能優化除錯。",
+            "zh-Hans": "追求动漫美学与立体弹幕的 3D 动作游戏，玩家扮演除妖使「炎姬」，以近战与远程连招、闪避与弹刀对抗妖魔。由 Crimson Dusk 开发、PLAYISM 发行，2026 年 3 月于 Steam 上市。我在项目中负责 UI 系统开发、编辑器工具、第三方 API 整合与性能优化除错。",
+            en: "A 3D action game built around anime aesthetics and three-dimensional bullet-hell combat. Players take the role of the exorcist Homura Hime, weaving melee and ranged combos while dodging and parrying through waves of demons. Developed by Crimson Dusk, published by PLAYISM, released on Steam in March 2026. I worked on UI systems, editor tooling, third-party API integration, and performance optimization and debugging.",
+            ja: "アニメ的な表現と立体弾幕を追求した 3D アクションゲーム。プレイヤーは除妖使「炎姬」として、近接と遠距離のコンボ、回避と弾き返しで妖魔に立ち向かう。Crimson Dusk 開発、PLAYISM 発売、2026 年 3 月に Steam でリリース。私は UI システム開発、エディタ拡張、サードパーティ API 連携、パフォーマンス最適化とデバッグを担当。"
+        },
+        tech: ["Unity", "C#", "UGUI", "Ultimate Inventory System", "Unity Localization",
+            { "zh-Hant": "Timeline 擴充", "zh-Hans": "Timeline 扩展", en: "Timeline Extensions", ja: "Timeline 拡張" },
+            "Steamworks API", "Discord Webhook"],
+        roles: [
+            {
+                group: { "zh-Hant": "UI 系統開發與架構", "zh-Hans": "UI 系统开发与架构", en: "UI Systems & Architecture", ja: "UI システム開発と設計" },
+                items: [
+                    {
+                        "zh-Hant": "基於 Unity UGUI 與 Ultimate Inventory System 插件設計並實裝 UI 系統",
+                        "zh-Hans": "基于 Unity UGUI 与 Ultimate Inventory System 插件设计并实装 UI 系统",
+                        en: "Designed and implemented the UI system on Unity UGUI and the Ultimate Inventory System plugin",
+                        ja: "Unity UGUI と Ultimate Inventory System プラグインをベースに UI システムを設計・実装"
+                    },
+                    {
+                        "zh-Hant": "開發 UI 動態控制工具，降低製作 UI 動態效果的製作難度與時間成本",
+                        "zh-Hans": "开发 UI 动态控制工具，降低制作 UI 动态效果的难度与时间成本",
+                        en: "Built a UI motion authoring tool that cut both the difficulty and the time cost of producing UI animations",
+                        ja: "UI モーション制作ツールを開発し、UI 演出の制作難度と工数を削減"
+                    },
+                    {
+                        "zh-Hant": "利用 Unity Localization 實現多語系切換架構",
+                        "zh-Hans": "利用 Unity Localization 实现多语言切换架构",
+                        en: "Implemented the multi-language switching architecture with Unity Localization",
+                        ja: "Unity Localization を用いた多言語切り替え基盤を構築"
+                    }
+                ]
+            },
+            {
+                group: { "zh-Hant": "製作編輯器工具和系統功能", "zh-Hans": "制作编辑器工具和系统功能", en: "Editor Tools & Engine Systems", ja: "エディタ拡張とシステム機能" },
+                items: [
+                    {
+                        "zh-Hant": "針對美術與設計需求開發 Editor 工具，並擴充系統功能（如 Timeline 擴充）",
+                        "zh-Hans": "针对美术与设计需求开发 Editor 工具，并扩充系统功能（如 Timeline 扩展）",
+                        en: "Developed editor tools for art and design needs, and extended engine systems such as Timeline",
+                        ja: "アート・デザインの要望に応じたエディタ拡張を開発し、Timeline などのシステム機能を拡張"
+                    }
+                ]
+            },
+            {
+                group: { "zh-Hant": "第三方 API 整合", "zh-Hans": "第三方 API 整合", en: "Third-party API Integration", ja: "サードパーティ API 連携" },
+                items: [
+                    {
+                        "zh-Hant": "介接 Steamworks API 實作玩家帳號驗證、全球排行榜及成就等系統",
+                        "zh-Hans": "对接 Steamworks API 实现玩家账号验证、全球排行榜及成就等系统",
+                        en: "Integrated the Steamworks API for account authentication, global leaderboards and achievements",
+                        ja: "Steamworks API を介してアカウント認証、グローバルランキング、実績などのシステムを実装"
+                    },
+                    {
+                        "zh-Hant": "使用 Discord Webhook 建立遊戲內回報系統，自動至 Discord 建立討論串",
+                        "zh-Hans": "使用 Discord Webhook 建立游戏内反馈系统，自动在 Discord 建立讨论串",
+                        en: "Built an in-game bug report system on Discord webhooks that opens a thread automatically",
+                        ja: "Discord Webhook でゲーム内報告システムを構築し、Discord 上にスレッドを自動作成"
+                    }
+                ]
+            },
+            {
+                group: { "zh-Hant": "效能優化與除錯", "zh-Hans": "性能优化与除错", en: "Performance & Debugging", ja: "パフォーマンス最適化とデバッグ" },
+                items: [
+                    {
+                        "zh-Hant": "利用 Unity 內建除錯工具尋找調幀原因並協助修復",
+                        "zh-Hans": "利用 Unity 内建调试工具查找掉帧原因并协助修复",
+                        en: "Used Unity's built-in profiling tools to track down frame drops and help fix them",
+                        ja: "Unity 標準のプロファイラでフレーム落ちの原因を特定し、修正を支援"
+                    },
+                    {
+                        "zh-Hant": "負責定位並修復流程、場景及工具等各類 Bug，維持專案穩定度",
+                        "zh-Hans": "负责定位并修复流程、场景及工具等各类 Bug，维持项目稳定度",
+                        en: "Located and fixed bugs across flows, scenes and tools to keep the project stable",
+                        ja: "フロー・シーン・ツールなど各種バグの特定と修正を担当し、プロジェクトの安定性を維持"
+                    }
+                ]
+            }
+        ],
+        links: [
+            { label: "STEAM", url: "https://store.steampowered.com/app/1820000/Homura_Hime/", icon: "▶" }
+        ]
+    },
+    {
+        title: "TweenFlow",
+        categories: ["featured", "tool"],
+        tags: ["Unity", { "zh-Hant": "Editor 工具", "zh-Hans": "Editor 工具", en: "Editor Tool", ja: "エディタ拡張" }, "DOTween"],
+        cover: { type: "youtube", url: "https://www.youtube.com/watch?v=gKQwnMXvXj0" },
+        description: {
+            "zh-Hant": "基於 DOTween 開發的模組化動態排序系統，提供類似 Feel（MMFeedbacks）的模組化編輯介面。設計初衷是解決複雜 UI 與場景動態在傳統寫法下難以維護、難以重複使用的問題，讓動態效果能以序列方式組裝與複用。已實際導入《炎姬》的開發流程中使用。",
+            "zh-Hans": "基于 DOTween 开发的模块化动态排序系统，提供类似 Feel（MMFeedbacks）的模块化编辑界面。设计初衷是解决复杂 UI 与场景动态在传统写法下难以维护、难以重复使用的问题，让动态效果能以序列方式组装与复用。已实际导入《炎姬》的开发流程中使用。",
+            en: "A modular motion sequencing system built on DOTween, offering a block-based editing interface similar to Feel (MMFeedbacks). It exists to solve how hard complex UI and scene animation is to maintain and reuse when written by hand, letting motion be assembled and reused as sequences. It is in active use in the production pipeline of Homura Hime.",
+            ja: "DOTween をベースにしたモジュール式のモーションシーケンスシステム。Feel（MMFeedbacks）に近いモジュール型の編集インターフェースを提供する。複雑な UI やシーン演出は従来の書き方では保守も再利用も難しい、という課題を解決するために作ったもので、演出をシーケンスとして組み立て・再利用できる。『炎姬』の開発フローに実際に導入して使用している。"
+        },
+        tech: ["Unity", "C#", "DOTween", "Odin Inspector"],
+        roles: [
+            {
+                group: { "zh-Hant": "系統設計", "zh-Hans": "系统设计", en: "System Design", ja: "システム設計" },
+                items: [
+                    {
+                        "zh-Hant": "以繼承與多型架構設計序列控制框架，開發者可快速擴充自定義功能模組",
+                        "zh-Hans": "以继承与多态架构设计序列控制框架，开发者可快速扩充自定义功能模块",
+                        en: "Designed the sequencing framework around inheritance and polymorphism so developers can add custom modules quickly",
+                        ja: "継承とポリモーフィズムを用いてシーケンス制御フレームワークを設計し、独自モジュールを容易に追加できるようにした"
+                    }
+                ]
+            },
+            {
+                group: { "zh-Hant": "易用性與導入", "zh-Hans": "易用性与导入", en: "Usability & Adoption", ja: "使いやすさと導入" },
+                items: [
+                    {
+                        "zh-Hant": "整合 Odin Inspector 簡化操作介面，非工程人員也能自行配置動態效果",
+                        "zh-Hans": "整合 Odin Inspector 简化操作界面，非工程人员也能自行配置动态效果",
+                        en: "Integrated Odin Inspector to simplify the interface so non-engineers can configure motion themselves",
+                        ja: "Odin Inspector を組み込んで操作画面を簡素化し、非エンジニアでも演出を設定できるようにした"
+                    },
+                    {
+                        "zh-Hant": "於《炎姬》開發流程中實裝並使用",
+                        "zh-Hans": "于《炎姬》开发流程中实装并使用",
+                        en: "Deployed and used in the Homura Hime production pipeline",
+                        ja: "『炎姬』の開発フローに実装・導入"
+                    }
+                ]
+            }
+        ],
+        links: [
+            { label: "GITHUB", url: "https://github.com/ChengHsiCheng/UnityTools.git", icon: "⌂" },
+            {
+                label: { "zh-Hant": "DEMO 影片", "zh-Hans": "DEMO 视频", en: "Demo Video", ja: "デモ動画" },
+                url: "https://www.youtube.com/watch?v=gKQwnMXvXj0", icon: "▶"
+            }
+        ]
+    },
+    {
         title: "Heresy",
         categories: ["featured", "project"],
         tags: [
@@ -448,56 +498,6 @@ const PROJECTS = [
                 url: "https://pinzhensu.itch.io/keep", icon: "▶"
             }
         ]
-    },
-    {
-        title: "TweenFlow",
-        categories: ["featured", "tool"],
-        tags: ["Unity", { "zh-Hant": "Editor 工具", "zh-Hans": "Editor 工具", en: "Editor Tool", ja: "エディタ拡張" }, "DOTween"],
-        cover: { type: "youtube", url: "https://www.youtube.com/watch?v=gKQwnMXvXj0" },
-        description: {
-            "zh-Hant": "基於 DOTween 開發的模組化動態排序系統，提供類似 Feel（MMFeedbacks）的模組化編輯介面。設計初衷是解決複雜 UI 與場景動態在傳統寫法下難以維護、難以重複使用的問題，讓動態效果能以序列方式組裝與複用。已實際導入《炎姬》的開發流程中使用。",
-            "zh-Hans": "基于 DOTween 开发的模块化动态排序系统，提供类似 Feel（MMFeedbacks）的模块化编辑界面。设计初衷是解决复杂 UI 与场景动态在传统写法下难以维护、难以重复使用的问题，让动态效果能以序列方式组装与复用。已实际导入《炎姬》的开发流程中使用。",
-            en: "A modular motion sequencing system built on DOTween, offering a block-based editing interface similar to Feel (MMFeedbacks). It exists to solve how hard complex UI and scene animation is to maintain and reuse when written by hand, letting motion be assembled and reused as sequences. It is in active use in the production pipeline of Homura Hime.",
-            ja: "DOTween をベースにしたモジュール式のモーションシーケンスシステム。Feel（MMFeedbacks）に近いモジュール型の編集インターフェースを提供する。複雑な UI やシーン演出は従来の書き方では保守も再利用も難しい、という課題を解決するために作ったもので、演出をシーケンスとして組み立て・再利用できる。『炎姬』の開発フローに実際に導入して使用している。"
-        },
-        tech: ["Unity", "C#", "DOTween", "Odin Inspector"],
-        roles: [
-            {
-                group: { "zh-Hant": "系統設計", "zh-Hans": "系统设计", en: "System Design", ja: "システム設計" },
-                items: [
-                    {
-                        "zh-Hant": "以繼承與多型架構設計序列控制框架，開發者可快速擴充自定義功能模組",
-                        "zh-Hans": "以继承与多态架构设计序列控制框架，开发者可快速扩充自定义功能模块",
-                        en: "Designed the sequencing framework around inheritance and polymorphism so developers can add custom modules quickly",
-                        ja: "継承とポリモーフィズムを用いてシーケンス制御フレームワークを設計し、独自モジュールを容易に追加できるようにした"
-                    }
-                ]
-            },
-            {
-                group: { "zh-Hant": "易用性與導入", "zh-Hans": "易用性与导入", en: "Usability & Adoption", ja: "使いやすさと導入" },
-                items: [
-                    {
-                        "zh-Hant": "整合 Odin Inspector 簡化操作介面，非工程人員也能自行配置動態效果",
-                        "zh-Hans": "整合 Odin Inspector 简化操作界面，非工程人员也能自行配置动态效果",
-                        en: "Integrated Odin Inspector to simplify the interface so non-engineers can configure motion themselves",
-                        ja: "Odin Inspector を組み込んで操作画面を簡素化し、非エンジニアでも演出を設定できるようにした"
-                    },
-                    {
-                        "zh-Hant": "於《炎姬》開發流程中實裝並使用",
-                        "zh-Hans": "于《炎姬》开发流程中实装并使用",
-                        en: "Deployed and used in the Homura Hime production pipeline",
-                        ja: "『炎姬』の開発フローに実装・導入"
-                    }
-                ]
-            }
-        ],
-        links: [
-            { label: "GITHUB", url: "https://github.com/ChengHsiCheng/UnityTools.git", icon: "⌂" },
-            {
-                label: { "zh-Hant": "DEMO 影片", "zh-Hans": "DEMO 视频", en: "Demo Video", ja: "デモ動画" },
-                url: "https://www.youtube.com/watch?v=gKQwnMXvXj0", icon: "▶"
-            }
-        ]
     }
 ];
 
@@ -543,7 +543,7 @@ const ABOUT = {
         },
         {
             group: { "zh-Hant": "後端", "zh-Hans": "后端", en: "Backend", ja: "バックエンド" },
-            items: [".NET 8", "ASP.NET Core", "EF Core"]
+            items: [".NET", "ASP.NET Core", "EF Core"]
         },
         {
             group: { "zh-Hant": "桌面應用", "zh-Hans": "桌面应用", en: "Desktop", ja: "デスクトップ" },
@@ -571,13 +571,8 @@ const ABOUT = {
                 { "zh-Hant": "async / await 並行控制", "zh-Hans": "async / await 并行控制", en: "async / await & concurrency", ja: "async / await・並行制御" }]
         },
         {
-            group: { "zh-Hant": "整合", "zh-Hans": "整合", en: "Integration", ja: "連携" },
-            items: ["Steamworks API",
-                { "zh-Hant": "RS232 / 硬體 SDK", "zh-Hans": "RS232 / 硬件 SDK", en: "RS232 / Device SDKs", ja: "RS232 / デバイス SDK" }]
-        },
-        {
             group: { "zh-Hant": "工具", "zh-Hans": "工具", en: "Tools", ja: "ツール" },
-            items: ["Git", "Fork", "Visual Studio", "Claude Code"]
+            items: ["Steamworks API", "Git", "Fork", "Visual Studio", "Claude Code"]
         }
     ],
     /* copy：填入要複製的文字，點擊後複製到剪貼簿（不開新分頁）
