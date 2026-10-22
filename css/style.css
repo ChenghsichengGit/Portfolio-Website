@@ -837,12 +837,13 @@ footer {
     color: var(--ink-dim);
 }
 
-/* 技能：固定標籤欄寬，各排的標籤從同一條線開始 */
+/* 技能：固定標籤欄寬，標籤靠右貼齊 chips，並與該排第一個 chip 的基線對齊 */
 #skills {
     display: grid;
     grid-template-columns: max-content minmax(0, 1fr);
     column-gap: 14px;
     row-gap: 9px;
+    align-items: baseline;
 }
 
 /* 讓每一排的標籤與標籤、chips 與 chips 共用同一組格線欄 */
@@ -853,7 +854,7 @@ footer {
 .sk-label {
     font-size: 14px;
     color: var(--teal);
-    padding-top: 5px;
+    text-align: right;
     white-space: nowrap;
 }
 
@@ -953,6 +954,7 @@ footer {
     }
 
     .sk-label {
+        text-align: left;
         padding-top: 10px
     }
 }
