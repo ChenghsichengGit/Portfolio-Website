@@ -22,7 +22,7 @@ const LANGS = [
 ];
 
 const UI = {
-    roleSub: { "zh-Hant": "軟體工程師(C#/Unity)", "zh-Hans": "软件工程师(C#/Unity)", en: "Software Engineer (C#/Unity)", ja: "ソフトウェアエンジニア（C#/Unity）" },
+    roleSub: { "zh-Hant": "軟體工程師（C# / .NET / Unity）", "zh-Hans": "软件工程师（C# / .NET / Unity）", en: "Software Engineer (C# / .NET / Unity)", ja: "ソフトウェアエンジニア（C# / .NET / Unity）" },
     overview: { "zh-Hant": "作品介紹", "zh-Hans": "作品介绍", en: "Overview", ja: "作品紹介" },
     tech: { "zh-Hant": "使用工具與功能", "zh-Hans": "使用工具与功能", en: "Tools & Features", ja: "使用ツールと機能" },
     roles: { "zh-Hant": "負責內容", "zh-Hans": "负责内容", en: "Responsibilities", ja: "担当内容" },
