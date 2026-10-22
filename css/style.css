@@ -596,6 +596,10 @@ main {
     color: var(--ink)
 }
 
+.sec p + p {
+    margin-top: 10px
+}
+
 /* 技術項目：資訊類，純文字並以「・」分隔 */
 .chips {
     display: flex;

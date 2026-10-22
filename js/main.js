@@ -433,8 +433,14 @@ function openModal(p, trigger) {
     }
 
     if (p.description) {
-        const desc = document.createElement("p");
-        desc.textContent = t(p.description);
+        /* 介紹可以是單一字串，也可以是段落陣列（陣列就一段一個 p） */
+        const desc = document.createElement("div");
+        const paras = t(p.description);
+        (Array.isArray(paras) ? paras : [paras]).forEach(s => {
+            const para = document.createElement("p");
+            para.textContent = s;
+            desc.appendChild(para);
+        });
         mBody.appendChild(sec(t(UI.overview), desc));
     }
 

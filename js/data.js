@@ -22,7 +22,7 @@ const CATEGORIES = [
  *               { type:"video", src:"videos/xxx.mp4", poster:"images/xxx.jpg" } ← 滑鼠懸停播放
  *               { type:"youtube", url:"https://www.youtube.com/watch?v=xxxx" }  ← 卡片自動播放預覽、詳細頁內嵌播放器
  *               src 留空字串 "" 會顯示像素佔位圖（方便先排版）
- *  description 作品介紹（文字段落）
+ *  description 作品介紹（文字段落；給字串陣列會分成多段）
  *  tech        使用工具與功能（陣列，一項一個）
  *  roles       負責內容（陣列）：一般條目直接放字串 "..."
  *               要分組小標時放 { group:"小標題", items:["條目", ...] }
@@ -250,6 +250,86 @@ const PROJECTS = [
                     ja: "金銭処理は取り消せないため、手順の順序がそのまま「お金が消えるかどうか」を決める。チケット発券は「先に印刷し、成功の報告を受けてからサーバーが残高を引く」方式へ変更した（元は先に引いていたため、プリンタ故障でプレイヤーの残高が消えていた）。紙幣投入はいったんエスクローで保持し、サーバーがクレジット加算を確認してから金庫に収める。チケット精算は検証と使用済みフラグを単一の条件付き UPDATE で行い、DB の原子性によって同じチケットが 2 台で二重計上されるのを防いでいる。"
                 }
             }
+        ]
+    },
+    {
+        title: { "zh-Hant": "收藏庫 Library", "zh-Hans": "收藏库 Library", en: "Library", ja: "コレクション管理 Library" },
+        categories: ["featured", "project"],
+        tags: ["ASP.NET Core", "WPF", "SQL Server"],
+        cover: { type: "image", src: "images/library-main.png" },
+        description: {
+            "zh-Hant": [
+                "一個儲存和管理不同平台的各種遊戲、漫畫、小說等作品資訊與連結的專案。同一個作品可以儲存不同平台的連結並自動抓取價格，快速比較不同平台的價格。",
+                "功能包括：輸入連結自動抓取並建立資料、記錄評分與是否已購買、整理作者與社團及系列等資訊、以標籤分類並用多種條件搜尋與篩選、一次更新所有作品在各平台的價格與折扣、偵測重複登記的作品，以及刪除後仍可還原的最近刪除。",
+                "自學專案，使用 Claude Code 輔助開發。"
+            ],
+            "zh-Hans": [
+                "一个储存和管理不同平台的各种游戏、漫画、小说等作品信息与链接的项目。同一个作品可以储存不同平台的链接并自动抓取价格，快速比较不同平台的价格。",
+                "功能包括：输入链接自动抓取并建立数据、记录评分与是否已购买、整理作者与社团及系列等信息、以标签分类并用多种条件搜索与筛选、一次更新所有作品在各平台的价格与折扣、侦测重复登记的作品，以及删除后仍可还原的最近删除。",
+                "自学项目，使用 Claude Code 辅助开发。"
+            ],
+            en: [
+                "A project for storing and managing the details and links of works across different platforms — games, comics, novels and so on. A single work can hold links from several platforms, each with its price fetched automatically, so the platforms can be compared at a glance.",
+                "Features include: pasting a link to fetch the data and create the entry automatically, recording a rating and whether something has been bought, organising creators, circles and series, categorising by tag with search and filtering on several conditions, refreshing every work's price and discount across all platforms in one pass, detecting works registered twice, and a recycle bin that can restore what has been deleted.",
+                "A self-study project, built with Claude Code assisting."
+            ],
+            ja: [
+                "さまざまなプラットフォームのゲームや漫画、小説などの作品情報とリンクを保存・管理するプロジェクト。同じ作品について複数のプラットフォームのリンクを保存でき、価格を自動取得してプラットフォームごとの価格をすぐに比較できる。",
+                "主な機能：リンクを入力すると自動でデータを取得して登録、評価と購入済みかどうかの記録、作者やサークル、シリーズなどの情報の整理、タグによる分類と複数条件での検索・絞り込み、全作品の各プラットフォームでの価格と割引の一括更新、重複して登録した作品の検出、削除しても復元できる「最近削除した項目」。",
+                "独学プロジェクトで、Claude Code を併用して開発した。"
+            ]
+        },
+        tech: ["C#", ".NET 10", "ASP.NET Core Web API", "EF Core 10", "SQL Server 2022",
+            "WPF", "CommunityToolkit.Mvvm", "WPF UI",
+            "xUnit", "Docker Compose", "GitHub Actions"],
+        roles: [
+            {
+                group: { "zh-Hant": "資料儲存和管理", "zh-Hans": "数据储存和管理", en: "Data Storage & Management", ja: "データの保存と管理" },
+                items: [
+                    {
+                        "zh-Hant": "用 EF Core 搭配 SQL Server 建立資料庫管理資料，包含一對多與多對多的資料結構與計算欄位，並利用 Migration 修改或新建資料表；另外用 ASP.NET Core 建立 HTTP API 讓前端呼叫使用。查詢時依搜尋、篩選與排序條件動態組合後交給資料庫執行，刪除的資料以全域查詢篩選隱藏，保留還原的空間。",
+                        "zh-Hans": "用 EF Core 搭配 SQL Server 建立数据库管理数据，包含一对多与多对多的数据结构与计算列，并利用 Migration 修改或新建数据表；另外用 ASP.NET Core 建立 HTTP API 让前端调用使用。查询时依搜索、筛选与排序条件动态组合后交给数据库执行，删除的数据以全局查询筛选隐藏，保留还原的空间。",
+                        en: "EF Core with SQL Server for the database, covering one-to-many and many-to-many structures and computed columns, with Migrations used to alter or add tables; an HTTP API built with ASP.NET Core for the client to call. Queries are composed dynamically from the search, filter and sort conditions before being handed to the database, and deleted rows are hidden by a global query filter so there is still room to restore them.",
+                        ja: "EF Core と SQL Server でデータベースを構築してデータを管理し、1 対多・多対多の構造と計算列を扱い、Migration でテーブルの変更や追加を行う。あわせて ASP.NET Core で HTTP API を作り、フロントエンドから呼び出せるようにした。検索・絞り込み・並び替えの条件から動的にクエリを組み立ててデータベースに実行させ、削除したデータはグローバルクエリフィルターで隠して復元の余地を残している。"
+                    }
+                ]
+            },
+            {
+                group: { "zh-Hant": "桌面程式", "zh-Hans": "桌面程序", en: "Desktop Application", ja: "デスクトップアプリ" },
+                items: [
+                    {
+                        "zh-Hant": "用 WPF 配合 CommunityToolkit.Mvvm 製作前端桌面程式，採 MVVM 架構，由 ViewModel 取得參數、執行排序與篩選後繪製到畫面上；介面外觀使用 WPF UI，資料變更後畫面自動更新，表單在輸入時即時提示重複的作品。",
+                        "zh-Hans": "用 WPF 配合 CommunityToolkit.Mvvm 制作前端桌面程序，采 MVVM 架构，由 ViewModel 取得参数、执行排序与筛选后绘制到画面上；界面外观使用 WPF UI，数据变更后画面自动更新，表单在输入时即时提示重复的作品。",
+                        en: "The desktop client is built with WPF and CommunityToolkit.Mvvm on an MVVM structure, where the view model takes the parameters, applies the sorting and filtering and then draws to the screen; the look comes from WPF UI, the view updates itself once the data changes, and the form flags duplicate works as they are typed in.",
+                        ja: "フロントエンドのデスクトップアプリは WPF と CommunityToolkit.Mvvm を使い、MVVM 構成で作成した。ViewModel がパラメーターを受け取り、並び替えと絞り込みを行ってから画面に描画する。外観は WPF UI を使用し、データが変わると画面は自動で更新され、フォームでは入力中に重複した作品をその場で知らせる。"
+                    }
+                ]
+            },
+            {
+                group: { "zh-Hant": "外部 API 自動抓取", "zh-Hans": "外部 API 自动抓取", en: "Fetching from External APIs", ja: "外部 API からの自動取得" },
+                items: [
+                    {
+                        "zh-Hant": "用 HttpClient 串接 Steam 與 Microsoft Store 抓取作品資料與價格，貼上網址就能自動建立資料；也可以執行更新價格功能，一次重新查詢所有商店網址目前的價格與折扣。封面可以選檔、拖放、貼上或從網址下載，上傳前會檢查檔頭並自動縮圖。",
+                        "zh-Hans": "用 HttpClient 串接 Steam 与 Microsoft Store 抓取作品数据与价格，贴上网址就能自动建立数据；也可以执行更新价格功能，一次重新查询所有商店网址目前的价格与折扣。封面可以选档、拖放、粘贴或从网址下载，上传前会检查文件头并自动缩图。",
+                        en: "HttpClient is used to reach Steam and the Microsoft Store for work details and prices, so pasting a URL creates the entry automatically; a price refresh re-queries every stored store URL for its current price and discount in a single pass. Covers can be picked from a file, dragged, pasted or downloaded from a URL, and are checked by file header and resized before being uploaded.",
+                        ja: "HttpClient で Steam と Microsoft Store に接続して作品データと価格を取得し、URL を貼り付けるだけでデータが作成される。価格更新を実行すれば、保存されているすべてのストア URL について現在の価格と割引を一度に再取得する。カバー画像はファイル選択、ドラッグ＆ドロップ、貼り付け、URL からのダウンロードに対応し、アップロード前にファイルヘッダーを確認して自動でリサイズする。"
+                    }
+                ]
+            },
+            {
+                group: { "zh-Hant": "測試與開發環境", "zh-Hans": "测试与开发环境", en: "Testing & Development Environment", ja: "テストと開発環境" },
+                items: [
+                    {
+                        "zh-Hant": "利用 Docker Compose 建立開發用的 SQL Server 執行環境，連線字串等機密資料以 User Secrets 管理、不進版本控制；測試以 xUnit 撰寫，涵蓋名稱與網址的正規化、驗證規則與商店回應的解析，並以 GitHub Actions 在每次推送時自動建置與測試。",
+                        "zh-Hans": "利用 Docker Compose 建立开发用的 SQL Server 运行环境，连接字串等机密资料以 User Secrets 管理、不进版本控制；测试以 xUnit 撰写，涵盖名称与网址的正规化、验证规则与商店回应的解析，并以 GitHub Actions 在每次推送时自动构建与测试。",
+                        en: "Docker Compose provides the SQL Server instance used during development, while connection strings and other secrets are kept in User Secrets and out of version control; the tests are written in xUnit and cover the normalisation of names and URLs, the validation rules and the parsing of store responses, with GitHub Actions building and testing on every push.",
+                        ja: "開発用の SQL Server 実行環境は Docker Compose で用意し、接続文字列などの機密情報は User Secrets で管理してバージョン管理には含めない。テストは xUnit で記述し、名称と URL の正規化、検証ルール、ストアからの応答の解析を対象としている。さらに GitHub Actions により、プッシュごとにビルドとテストを自動実行している。"
+                    }
+                ]
+            }
+        ],
+        links: [
+            { label: "GitHub", url: "https://github.com/ChenghsichengGit/Library", icon: "▶" }
         ]
     },
     {
